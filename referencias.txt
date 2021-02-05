@@ -1,0 +1,13 @@
+https://medium.com/@mrdatainsight/how-to-use-opencv-imshow-in-a-jupyter-notebook-quick-tip-ce83fa32b5ad
+
+https://www.geeksforgeeks.org/python-opencv-cv2-imread-method/
+
+https://stackoverflow.com/questions/21810452/cv2-imshow-command-doesnt-work-properly-in-opencv-python
+
+https://www.fit.vutbr.cz/~vasicek/imagedb/img_corrupted/impnoise_005/108073.png
+
+https://docs.opencv.org/master/d4/da8/group__imgcodecs.html
+
+https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_core/py_basic_ops/py_basic_ops.html
+
+https://www.w3schools.com/python/ref_math_floor.asp
