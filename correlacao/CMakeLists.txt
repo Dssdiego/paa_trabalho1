@@ -29,7 +29,9 @@ add_executable(index
         src/structs.h
         )
 
+if(EMSCRIPTEN)
 set_target_properties(index PROPERTIES LINK_FLAGS "-s DEMANGLE_SUPPORT=1 --preload-file assets --bind")
+endif()
 
 source_group(external REGULAR_EXPRESSION external)
 source_group(src REGULAR_EXPRESSION src)
