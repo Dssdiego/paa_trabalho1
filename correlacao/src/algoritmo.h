@@ -10,9 +10,9 @@
 namespace Algoritmo
 {
     // Métodos Principais
-    void rodaMedia(Imagem *entrada, int tamanhoMascara, Imagem *resultado);
-    void rodaSalPimenta(Imagem *entrada, int tamanhoMascara, int corSal, int corPimenta, Imagem *resultado);
-    void rodaIntervalo(Imagem *entrada, int tamanhoMascara, int min, int max, Imagem *resultado);
+    void rodaMedia(Imagem *entrada, int tamanhoMascara, Imagem *resultado, double *tempoExecucao);
+    void rodaSalPimenta(Imagem *entrada, int tamanhoMascara, int corSal, int corPimenta, Imagem *resultado, double *tempoExecucao);
+    void rodaIntervalo(Imagem *entrada, int tamanhoMascara, int min, int max, Imagem *resultado, double *tempoExecucao);
 
     // Métodos de 'Ajuda'
     int convertePosXY(int x, int y);

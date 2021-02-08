@@ -5,6 +5,8 @@
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 
 #include "algoritmo.h"
+#include <ctime>
+#include <chrono>
 #include <stb_image/stb_image_write.h>
 
 int linhas, colunas;
@@ -12,13 +14,16 @@ int soma = 0;
 unsigned char *pixels = nullptr;
 int corSal, corPimenta, corMin, corMax;
 int tamMasc;
+clock_t t; // Armazenamento do tempo
 
-void Algoritmo::rodaMedia(Imagem *entrada, int tamanhoMascara, Imagem *resultado)
+void Algoritmo::rodaMedia(Imagem *entrada, int tamanhoMascara, Imagem *resultado, double *tempoExecucao)
 {
     pixels = entrada->pixels;
     linhas = entrada->largura;
     colunas = entrada->altura;
     tamMasc = tamanhoMascara;
+
+    clock_t start = clock(); // Inicia o timer
 
     // Percorre as colunas da imagem
     for (int x = 0; x < colunas; ++x)
@@ -56,6 +61,9 @@ void Algoritmo::rodaMedia(Imagem *entrada, int tamanhoMascara, Imagem *resultado
         }
     }
 
+    clock_t end = clock(); // Pára o timer
+    *tempoExecucao = double(end - start)/((double) CLOCKS_PER_SEC/1000); // Calcula o tempo de execução
+
     // Preenche o resultado
     resultado->largura = entrada->largura;
     resultado->altura = entrada->altura;
@@ -65,7 +73,7 @@ void Algoritmo::rodaMedia(Imagem *entrada, int tamanhoMascara, Imagem *resultado
     stbi_write_png("resultado.png", linhas, colunas, 1, resultado->pixels, linhas);
 }
 
-void Algoritmo::rodaSalPimenta(Imagem *entrada, int tamanhoMascara, int sal, int pimenta, Imagem *resultado)
+void Algoritmo::rodaSalPimenta(Imagem *entrada, int tamanhoMascara, int sal, int pimenta, Imagem *resultado, double *tempoExecucao)
 {
     pixels = entrada->pixels;
     linhas = entrada->largura;
@@ -73,6 +81,8 @@ void Algoritmo::rodaSalPimenta(Imagem *entrada, int tamanhoMascara, int sal, int
     tamMasc = tamanhoMascara;
     corSal = sal;
     corPimenta = pimenta;
+
+    clock_t start = clock(); // Inicia o timer
 
     // Percorre as colunas da imagem
     for (int x = 0; x < colunas; ++x)
@@ -114,6 +124,9 @@ void Algoritmo::rodaSalPimenta(Imagem *entrada, int tamanhoMascara, int sal, int
         }
     }
 
+    clock_t end = clock(); // Pára o timer
+    *tempoExecucao = double(end - start)/((double) CLOCKS_PER_SEC/1000); // Calcula o tempo de execução
+
     // Preenche o resultado
     resultado->largura = entrada->largura;
     resultado->altura = entrada->altura;
@@ -123,7 +136,7 @@ void Algoritmo::rodaSalPimenta(Imagem *entrada, int tamanhoMascara, int sal, int
     stbi_write_png("resultado.png", linhas, colunas, 1, resultado->pixels, linhas);
 }
 
-void Algoritmo::rodaIntervalo(Imagem *entrada, int tamanhoMascara, int min, int max, Imagem *resultado)
+void Algoritmo::rodaIntervalo(Imagem *entrada, int tamanhoMascara, int min, int max, Imagem *resultado, double *tempoExecucao)
 {
     pixels = entrada->pixels;
     linhas = entrada->largura;
@@ -131,6 +144,8 @@ void Algoritmo::rodaIntervalo(Imagem *entrada, int tamanhoMascara, int min, int 
     tamMasc = tamanhoMascara;
     corMin = min;
     corMax = max;
+
+    clock_t start = clock(); // Inicia o timer
 
     // Percorre as colunas da imagem
     for (int x = 0; x < colunas; ++x)
@@ -170,6 +185,9 @@ void Algoritmo::rodaIntervalo(Imagem *entrada, int tamanhoMascara, int min, int 
             }
         }
     }
+
+    clock_t end = clock(); // Pára o timer
+    *tempoExecucao = double(end - start)/((double) CLOCKS_PER_SEC/1000); // Calcula o tempo de execução
 
     // Preenche o resultado
     resultado->largura = entrada->largura;

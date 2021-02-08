@@ -35,6 +35,7 @@ static float corSal[3] = {1.0f, 1.0f, 1.0f};
 static float corPimenta[3] = {0.0f, 0.0f, 0.0f};
 static float corMin[3] = {0.3f, 0.3f, 0.3f};
 static float corMax[3] = {0.35f, 0.35f, 0.35f};
+static double tempoExecucao;
 static bool limpaBuffer = true;
 const char *imagens[] = {"Estátua", "Pinguim", "Tigre", "Osso", "Mona Lisa", "Menino"};
 const char *algoritmos[] = {"Média", "Salt & Pepper", "Intervalo"};
@@ -144,24 +145,26 @@ void Interface::criaComponentes(SDL_Window *window)
             switch (algoritmoSelecionado)
             {
                 case ALGO_MEDIA:
-                    Algoritmo::rodaMedia(&imagemAtual, tamanhoMascara, &imagemResultado);
+                    Algoritmo::rodaMedia(&imagemAtual, tamanhoMascara, &imagemResultado, &tempoExecucao);
                     carregaTexturaDoArquivo("resultado.png", &imagemResultado.textura, &imagemResultado.largura,
                                             &imagemResultado.altura);
                     break;
                 case ALGO_SAL_PIMENTA:
                     Algoritmo::rodaSalPimenta(&imagemAtual, tamanhoMascara, corSal[0] * 255, corPimenta[0] * 255,
-                                              &imagemResultado);
+                                              &imagemResultado, &tempoExecucao);
                     carregaTexturaDoArquivo("resultado.png", &imagemResultado.textura, &imagemResultado.largura,
                                             &imagemResultado.altura);
                     break;
                 case ALGO_INTERVALO:
                     Algoritmo::rodaIntervalo(&imagemAtual, tamanhoMascara, corMin[0] * 255, corMax[0] * 255,
-                                             &imagemResultado);
+                                             &imagemResultado, &tempoExecucao);
                     carregaTexturaDoArquivo("resultado.png", &imagemResultado.textura, &imagemResultado.largura,
                                             &imagemResultado.altura);
                     break;
             }
         }
+
+        ImGui::LabelText("tempoExecucao", "Tempo de Execução: %lf ms", tempoExecucao);
     }
 
     ImGui::PopItemWidth();
